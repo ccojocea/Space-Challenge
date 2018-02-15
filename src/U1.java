@@ -21,18 +21,24 @@ public class U1 extends Rocket{
     public U1(){
         super(U1WEIGHT);
         this.maxWeight = 18000;
+        this.cargoLimit = 8000;
         this.cost = 100000000;
     }
     
     @Override
     public boolean land(){
         double random = Math.random() * 100;
-        double chanceOfFail = (1 * (this.cargo / this.maxWeight));
-        System.out.println("Random land: " + random);
-        System.out.println("chanceOfFail land: " + chanceOfFail);
-        if (chanceOfFail >= random){
+        double chanceOfFail = (1 * (this.cargo / this.cargoLimit));
+        if (chanceOfFail <= random){
             return true;
         } else {
+            System.out.println("0. U1 Rocket failed to land");
+            System.out.println("1. Landing random: " + random);
+            System.out.println("2. Landing chance to fail: " + chanceOfFail);
+            System.out.println("3. Rocket weight: " + this.weight);
+            System.out.println("4. Rocket maxWeight: " + this.maxWeight);
+            System.out.println("5. Rocket cargo: " + this.cargo);
+            System.out.println("6. Rocket cargo limit: " + this.cargoLimit);
             return false;
         }
     }
@@ -40,12 +46,17 @@ public class U1 extends Rocket{
     @Override
     public boolean launch(){
         double random = Math.random() * 100;
-        double chanceOfFail = (5 * (this.cargo / this.maxWeight));
-        System.out.println("Random land: " + random);
-        System.out.println("chanceOfFail land: " + chanceOfFail);
-        if (chanceOfFail >= random){
+        double chanceOfFail = (5 * (this.cargo / this.cargoLimit));
+        if (chanceOfFail <= random){
             return true;
         } else {
+            System.out.println("0. U1 Rocket failed to launch");
+            System.out.println("1. Launch random: " + random);
+            System.out.println("2. Launch chance to fail: " + chanceOfFail);
+            System.out.println("3. Rocket weight: " + this.weight);
+            System.out.println("4. Rocket maxWeight: " + this.maxWeight);
+            System.out.println("5. Rocket cargo: " + this.cargo);
+            System.out.println("6. Rocket cargo limit: " + this.cargoLimit);
             return false;
         }
     }

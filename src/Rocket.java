@@ -13,6 +13,7 @@ public class Rocket implements SpaceShip{
     int cost;
     double maxWeight;
     double cargo;
+    double cargoLimit;
     
     public Rocket(int weight){
         this.weight = weight;
@@ -30,7 +31,7 @@ public class Rocket implements SpaceShip{
 
     @Override
     public boolean canCarry(Item item) {
-        if (item.getWeight() + this.weight + this.cargo <= this.maxWeight){
+        if (item.getWeight() + this.cargo <= this.cargoLimit){
             return true;
         } else {
             return false;

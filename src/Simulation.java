@@ -66,6 +66,7 @@ public class Simulation {
                 u1Rockets.get(rocketCounter).carry(arrayList.get(i));
             }
         }
+        System.out.println("U1 rockets created: " + (rocketCounter + 1));
         return u1Rockets;
     }
     
@@ -88,7 +89,7 @@ public class Simulation {
                 u2Rockets.get(rocketCounter).carry(arrayList.get(i));
             }
         }
-        System.out.println("U2 rockets created initially: " + (rocketCounter + 1));
+        System.out.println("U2 rockets created: " + (rocketCounter + 1));
         return u2Rockets;
     }
     
@@ -104,14 +105,13 @@ public class Simulation {
         for(Rocket rocket : arrayList){
             counter++;
             while(rocket.launch() == false){
-                System.out.println("Rocket failed to launch: " + counter);
                 counter++;
             }
             while(rocket.land() == false){
-                System.out.println("Rocket failed to land: " + counter);
                 counter++;
             }
         }
+        System.out.println("Rockets created: " + counter);
         return counter * arrayList.get(0).cost;
     }
 }

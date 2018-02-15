@@ -21,13 +21,14 @@ public class U2 extends Rocket{
     public U2(){
         super(U2WEIGHT);
         this.maxWeight = 29000;
+        this.cargoLimit = 11000;
         this.cost = 120000000;
     }
     
     @Override
     public boolean land(){
         double random = Math.random() * 100;
-        double chanceOfFail = (8 * (this.cargo / this.maxWeight));
+        double chanceOfFail = (8 * (this.cargo / this.cargoLimit));
         System.out.println("Random land: " + random);
         System.out.println("chanceOfFail land: " + chanceOfFail);
         if (chanceOfFail >= random){
@@ -40,7 +41,7 @@ public class U2 extends Rocket{
     @Override
     public boolean launch(){
         double random = Math.random() * 100;
-        double chanceOfFail = (4 * (this.cargo / this.maxWeight));
+        double chanceOfFail = (4 * (this.cargo / this.cargoLimit));
         System.out.println("Random land: " + random);
         System.out.println("chanceOfFail land: " + chanceOfFail);
         if (chanceOfFail >= random){
