@@ -1,6 +1,9 @@
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import jdk.nashorn.internal.objects.NativeArray;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,7 +29,20 @@ public class Simulation {
      * @return 
      */
     public ArrayList<Item> loadItems(File file){
-        
+        ArrayList<Item> list = new ArrayList<>();
+        try{
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] lineSplit = line.split("=");
+                System.out.println("Loading item: " + lineSplit[0] + " - Weight: " + lineSplit[1]);
+                list.add(new Item(lineSplit[0], Integer.valueOf(lineSplit[1])));
+            }
+            scanner.close();
+        } catch (FileNotFoundException e){
+            System.out.println("File not found!" + e);
+        }
+        return list;
     }
     
     
@@ -37,8 +53,20 @@ public class Simulation {
      * rockets that are fully loaded.
      * @param arrayList 
      */
-    public void loadU1(ArrayList<Item> arrayList){
-        
+    public ArrayList<Rocket> loadU1(ArrayList<Item> arrayList){
+        ArrayList<Rocket> u1Rockets = new ArrayList<>();
+        u1Rockets.add(new U1());
+        int rocketCounter = 0;
+        for(int i = 0; i < arrayList.size(); i++){
+            if(u1Rockets.get(rocketCounter).canCarry(arrayList.get(i))){
+                u1Rockets.get(rocketCounter).carry(arrayList.get(i));
+            } else {
+                u1Rockets.add(new U1());
+                rocketCounter++;
+                u1Rockets.get(rocketCounter).carry(arrayList.get(i));
+            }
+        }
+        return u1Rockets;
     }
     
     /**
@@ -47,8 +75,21 @@ public class Simulation {
      * ArrayList of those U2 rockets that are fully loaded.
      * @param arrayList 
      */
-    public void loadU2(ArrayList<Item> arrayList){
-        
+    public ArrayList<Rocket> loadU2(ArrayList<Item> arrayList){
+        ArrayList<Rocket> u2Rockets = new ArrayList<>();
+        u2Rockets.add(new U2());
+        int rocketCounter = 0;
+        for(int i = 0; i < arrayList.size(); i++){
+            if(u2Rockets.get(rocketCounter).canCarry(arrayList.get(i))){
+                u2Rockets.get(rocketCounter).carry(arrayList.get(i));
+            } else {
+                u2Rockets.add(new U2());
+                rocketCounter++;
+                u2Rockets.get(rocketCounter).carry(arrayList.get(i));
+            }
+        }
+        System.out.println("U2 rockets created initially: " + (rocketCounter + 1));
+        return u2Rockets;
     }
     
     /**
@@ -58,7 +99,19 @@ public class Simulation {
      * @param arrayList 
      * @return runSimulation then returns the total budget required to send all rockets (including the crashed ones).
      */
-    public int runSimulation(ArrayList<Rocket> arrayList){
-        
+    public long runSimulation(ArrayList<Rocket> arrayList){
+        int counter = 0;
+        for(Rocket rocket : arrayList){
+            counter++;
+            while(rocket.launch() == false){
+                System.out.println("Rocket failed to launch: " + counter);
+                counter++;
+            }
+            while(rocket.land() == false){
+                System.out.println("Rocket failed to land: " + counter);
+                counter++;
+            }
+        }
+        return counter * arrayList.get(0).cost;
     }
 }

@@ -9,11 +9,14 @@
  * @author ccojo
  */
 public class Rocket implements SpaceShip{
-    int weight;
+    final double weight;
     int cost;
-    int maxWeight;
-    int cargo;
-    int cargoLimit = maxWeight - cargo;
+    double maxWeight;
+    double cargo;
+    
+    public Rocket(int weight){
+        this.weight = weight;
+    }
     
     @Override
     public boolean launch() {
@@ -27,12 +30,16 @@ public class Rocket implements SpaceShip{
 
     @Override
     public boolean canCarry(Item item) {
-        
+        if (item.getWeight() + this.weight + this.cargo <= this.maxWeight){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void carry(Item item) {
-        //to be implemented
+        this.cargo += item.getWeight();
     }
     
 }
