@@ -29,10 +29,13 @@ public class Main {
         Simulation sim = new Simulation();
         phaseOneItems = sim.loadItems(new File("src/phase-1.txt"));
         phaseTwoItems = sim.loadItems(new File("src/phase-2.txt"));
-        ArrayList<Rocket> phaseOneU1 = sim.loadU1(phaseOneItems);
-        ArrayList<Rocket> phaseTwoU1 = sim.loadU1(phaseTwoItems);
-        ArrayList<Rocket> phaseOneU2 = sim.loadU2(phaseOneItems);
-        ArrayList<Rocket> phaseTwoU2 = sim.loadU2(phaseTwoItems);
-        sim.runSimulation(phaseOneU1);
+        ArrayList<Rocket> phaseOneU1 = sim.loadU1(phaseOneItems, 1);
+        ArrayList<Rocket> phaseTwoU1 = sim.loadU1(phaseTwoItems, 2);
+        ArrayList<Rocket> phaseOneU2 = sim.loadU2(phaseOneItems, 1);
+        ArrayList<Rocket> phaseTwoU2 = sim.loadU2(phaseTwoItems, 2);
+//        sim.runSimulation(phaseOneU1);
+//        sim.runSimulation(phaseTwoU1);
+//        sim.runSimulation(phaseOneU2);
+//        sim.runSimulation(phaseTwoU2);
     }
 }

@@ -53,7 +53,7 @@ public class Simulation {
      * rockets that are fully loaded.
      * @param arrayList 
      */
-    public ArrayList<Rocket> loadU1(ArrayList<Item> arrayList){
+    public ArrayList<Rocket> loadU1(ArrayList<Item> arrayList, int phase){
         ArrayList<Rocket> u1Rockets = new ArrayList<>();
         u1Rockets.add(new U1());
         int rocketCounter = 0;
@@ -66,7 +66,7 @@ public class Simulation {
                 u1Rockets.get(rocketCounter).carry(arrayList.get(i));
             }
         }
-        System.out.println("U1 rockets created: " + (rocketCounter + 1));
+        System.out.println("U2 rockets created initially for phase " + phase + ": " + (rocketCounter + 1));
         return u1Rockets;
     }
     
@@ -76,7 +76,7 @@ public class Simulation {
      * ArrayList of those U2 rockets that are fully loaded.
      * @param arrayList 
      */
-    public ArrayList<Rocket> loadU2(ArrayList<Item> arrayList){
+    public ArrayList<Rocket> loadU2(ArrayList<Item> arrayList, int phase){
         ArrayList<Rocket> u2Rockets = new ArrayList<>();
         u2Rockets.add(new U2());
         int rocketCounter = 0;
@@ -89,7 +89,7 @@ public class Simulation {
                 u2Rockets.get(rocketCounter).carry(arrayList.get(i));
             }
         }
-        System.out.println("U2 rockets created: " + (rocketCounter + 1));
+        System.out.println("U2 rockets created initially for phase " + phase + ": " + (rocketCounter + 1));
         return u2Rockets;
     }
     
