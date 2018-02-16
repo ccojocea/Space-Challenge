@@ -14,6 +14,7 @@ public class Rocket implements SpaceShip{
     double maxWeight;
     double cargo;
     double cargoLimit;
+    String type;
     
     public Rocket(int weight){
         this.weight = weight;

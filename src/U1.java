@@ -18,13 +18,13 @@ public class U1 extends Rocket{
     
     final static int U1WEIGHT = 10000;
     static int U1rockets = 0;
-    public String type = "U1";
     
     public U1(){
         super(U1WEIGHT);
         this.maxWeight = 18000;
         this.cargoLimit = 8000;
         this.cost = 100000000;
+        this.type = "U1";
         U1rockets++;
     }
     

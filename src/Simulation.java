@@ -102,7 +102,9 @@ public class Simulation {
      */
     public long runSimulation(ArrayList<Rocket> arrayList){
         int counter = 0;
+        String type = "";
         for(Rocket rocket : arrayList){
+            type = rocket.type;
             counter++;
             while(rocket.launch() == false){
                 counter++;
@@ -111,7 +113,7 @@ public class Simulation {
                 counter++;
             }
         }
-        System.out.println("Rockets created: " + counter);
+        System.out.println(type + " rockets created in the end: " + counter);
         return counter * arrayList.get(0).cost;
     }
 }

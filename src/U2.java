@@ -18,13 +18,13 @@ public class U2 extends Rocket{
     
     final static int U2WEIGHT = 18000;
     static int U2rockets = 0;
-    public String type = "U2";
     
     public U2(){
         super(U2WEIGHT);
         this.maxWeight = 29000;
         this.cargoLimit = 11000;
         this.cost = 120000000;
+        this.type = "U2";
         U2rockets++;
     }
     

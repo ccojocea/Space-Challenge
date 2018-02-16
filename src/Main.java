@@ -26,6 +26,9 @@ public class Main {
     static ArrayList<Item> phaseTwoItems;
     
     public static void main(String[] args) {
+        long u1Costs = 0;
+        long u2Costs = 0;
+        
         Simulation sim = new Simulation();
         phaseOneItems = sim.loadItems(new File("src/phase-1.txt"));
         phaseTwoItems = sim.loadItems(new File("src/phase-2.txt"));
@@ -33,9 +36,18 @@ public class Main {
         ArrayList<Rocket> phaseTwoU1 = sim.loadU1(phaseTwoItems, 2);
         ArrayList<Rocket> phaseOneU2 = sim.loadU2(phaseOneItems, 1);
         ArrayList<Rocket> phaseTwoU2 = sim.loadU2(phaseTwoItems, 2);
-//        sim.runSimulation(phaseOneU1);
-//        sim.runSimulation(phaseTwoU1);
-//        sim.runSimulation(phaseOneU2);
-//        sim.runSimulation(phaseTwoU2);
+        u1Costs += sim.runSimulation(phaseOneU1);
+        u1Costs += sim.runSimulation(phaseTwoU1);
+        u2Costs += sim.runSimulation(phaseOneU2);
+        u2Costs += sim.runSimulation(phaseTwoU2);
+        System.out.println("Total costs for rocket U1: " + "$" + u1Costs);
+        System.out.println("Total costs for rocket U2: " + "$" + u2Costs);
+        if(u1Costs > u2Costs){
+            System.out.println("U2 is more efficient!");
+        } else if (u1Costs < u2Costs){
+            System.out.println("U1 is more efficient!");
+        } else {
+            System.out.println("Both rockets have the same costs!");
+        }
     }
 }
